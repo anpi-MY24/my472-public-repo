@@ -459,6 +459,75 @@ car is assigned a unique i.d.</caption>
 </table>
 </div>
 </div>
+<div id="applying-a-second-data-transformation" class="section level3">
+<h3>Applying a second data transformation</h3>
+<p>For the second function, a transformation to the dataset is applied
+whereby time is calculated by using the formula <span class="math inline">\(distance \div speed\)</span>, and this is added as
+a new column.</p>
+<div id="code-chunk-with-function-applying-second-transformation-to-dataset" class="section level4">
+<h4>Code chunk with function applying second transformation to
+dataset</h4>
+<p><font size="2"> For the function below, I used some assistance from
+ChatGPT with the prompt “how can I create a function in r that creates a
+new column in a dataframe which contains values that are a product of
+the values from the previous two columns, don’t give me the direct
+answer explain the steps to me instead.” </font></p>
+<pre class="r"><code>#This function calculates &#39;time&#39; by dividing last row (distance)
+#with the second row (speed) and adds it to a new column
+calc_time &lt;- function(data){
+  distance_col &lt;- data[,ncol(data)]
+  speed_col &lt;- data[,ncol(data) - 1]
+  time &lt;- distance_col / speed_col
+  data$time &lt;- time
+  return(data)
+}
+time_cars_data &lt;- kable(head(calc_time(cars)), caption = &quot;Figure 3. Applying second transformation to the dataset whereby time is calculated and added to a new column&quot;)
+time_cars_data</code></pre>
+<table>
+<caption>Figure 3. Applying second transformation to the dataset whereby
+time is calculated and added to a new column</caption>
+<thead>
+<tr class="header">
+<th align="right">speed</th>
+<th align="right">dist</th>
+<th align="right">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">0.5000000</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">2.5000000</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">4</td>
+<td align="right">0.5714286</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">22</td>
+<td align="right">3.1428571</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">16</td>
+<td align="right">2.0000000</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="right">10</td>
+<td align="right">1.1111111</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
 
