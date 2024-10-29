@@ -46,10 +46,10 @@ For the second function, a transformation to the dataset is applied whereby time
 #This function calculates 'time' by dividing last row (distance)
 #with the second row (speed) and adds it to a new column
 calc_time <- function(data_new){
-  distance_col <- data[,ncol(data)]
-  speed_col <- data[,ncol(data) - 1]
+  distance_col <- data_new[,ncol(data_new)]
+  speed_col <- data_new[,ncol(data_new) - 1]
   time <- distance_col / speed_col
-  data$time <- time
+  data_new$time <- time
   return(data_new)
 }
 time_cars_data <- kable(head(calc_time(cars)), caption = "Figure 3. Applying second transformation to the dataset whereby time is calculated and added to a new column")
