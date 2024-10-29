@@ -1,0 +1,36 @@
+---
+title: "Data Transformation Exercise One - Formative Submission"
+author: "LSE Candidate Number: 51050"
+date: "Autumn term 2024"
+output: html_document
+---
+
+## Initial Dataset
+
+The figure below loads the first few values from pre-existing dataset called 'cars' in R. 
+
+``` {r, echo=FALSE}
+library(knitr)
+
+#kable() outputs data in tabular format when knitted in HTML
+kable(head(cars), caption = "Figure 1. Summary Dataset showing the speed and distance of cars")
+```
+
+### Applying data transformation
+
+To transform the dataset, the code below uses 'data' as an argument of a function that assigns each car with a different id. This helps distinguish the observations between the different cars.
+
+#### Code chunk with function applying transformation to dataset
+
+```{r, echo=TRUE, message= FALSE, warning= FALSE}
+library(tidyverse)
+
+#labels_rowid function adds a 'row id' column to 
+#state the different observations
+label_rowid <- function(data){
+  transformed_table <- rowid_to_column(data, var = "unique id")
+  return(transformed_table)
+}
+new_cars_data <- kable(head(label_rowid(cars)), caption = "Figure 2. Summary of transformed table of Figure 1 whereby each car is assigned a unique i.d.")
+new_cars_data
+```
